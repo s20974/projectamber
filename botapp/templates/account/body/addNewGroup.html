@@ -1,0 +1,19 @@
+{% extends 'account/body/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %} Add new group / edit existing {% endblock %}
+
+{% block page__header %} Add new group / edit existing {% endblock %}
+
+{% block page %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ addNewGroupForm | crispy }}
+        <button class="btn tasks__btn float-right">Save</button>
+    </form>
+    <h1>Также ваши группы:</h1>
+    {% for group in groups %}
+        <a href="/account/group/{{ group.id }}/edit">{{group.name}}</a>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'account/body/base.html' %}
+{% load static %}
+{% load crispy_forms_tags  %}
+
+{% block title %} Добавить заказ {% endblock %}
+
+{% block page__header %} Добавить заказ {% endblock %}
+
+{% block page %}
+    <section class="task">
+        <form method="POST" autocomplete="off" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ order | crispy }}
+            <button type="submit" class="btn btn-primary btn-block">Добавить</button>
+        </form>
+        </div> 
+    </section>
+{% endblock %}

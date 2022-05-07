@@ -1,0 +1,24 @@
+{% extends 'account/body/base.html' %}
+{% load static %}
+{% load crispy_forms_tags  %}
+
+{% block title %} User's products {% endblock %}
+
+{% block page__header %} Products {% endblock %}
+
+{% block page %}
+    <div class="card-group">
+        {% for product in products %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img-top" alt="Product Image">
+            <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.short_description }}</p>
+            <p class="card-subtitle mb-2 text-muted">{{ product.price }}</p>
+            <a href="{% url 'edit-product' product.id %}" class="btn btn-primary">Edit Product</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

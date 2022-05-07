@@ -1,0 +1,203 @@
+body
+{
+    font-family: 'Rubik', sans-serif;
+}
+
+
+header > .container-fluid > .row
+{
+    margin: auto;
+    width: 100%;
+    padding-top: 60px;
+}
+
+ul
+{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+ul > li
+{
+    margin: auto;
+}
+
+ul > a
+{
+    text-decoration: none;
+    color: #7F7D7F;
+}
+
+a:hover
+{
+    text-decoration: none;
+    color: #000;
+    transition: 0.32s;
+}
+
+.header__links, .headers__buttons
+{
+    padding: 0 60px;
+}
+
+.logo__text
+{
+    font-weight: bold;
+    font-size: 24px;
+}
+
+
+.header__logo
+{
+    padding: 0 7%;
+}
+
+
+.navbar-nav
+{
+    width: 100%;
+    padding: 40px 0;
+}
+
+
+.buttons__item:first-child
+{
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.buttons__item:last-child
+{
+    margin-left: 10%;
+    background-color: #614DB1;
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+    padding: 8px;
+}
+
+.buttons__item:last-child > .nav-link
+{
+    color: white;
+}
+
+.main__text
+{
+    font-size: 78px;
+}
+
+main{
+    padding-top: 100px;
+}
+
+main > .container-fluid{
+    padding: 0 7%;
+    margin: 0;
+}
+
+.main__subtext
+{
+    padding-right: 50%;
+    color: #7F7D7F;
+}
+
+.main__button
+{
+    margin-top: 20px;
+    background-color: #614DB1;
+    border-radius: 30px;
+    font-weight: bold;
+    padding: 16px;
+    width: 30%;
+    text-align: center;
+}
+
+
+.main-button__text
+{
+    color: white;
+}
+
+@media (max-width: 1280px)
+{
+    main{
+        padding-top: 30px;
+    }
+
+    main > .container-fluid{
+        padding: 0 1%;
+    }
+
+    .main__text
+    {
+        font-size: 64px;
+    }
+    .main__button
+    {
+        width: 50%;
+    }
+}
+
+@media (max-width: 995px)
+{
+    .buttons__item:last-child
+    {
+        margin-left: auto;
+    } 
+    .buttons__item:first-child
+    {
+        margin-right: auto;
+    }
+    main > .container-fluid{
+        padding: 0 5%;
+    } 
+    .main__text
+    {
+        font-size: 48px;
+    }
+    .main__subtext
+    {
+        padding-right: 20%;
+    }
+}
+
+@media (max-width: 768px)
+{
+    .promo__text
+    {
+        text-align: center;
+        padding: 20px 0;
+    }
+    .main__subtext
+    {
+        padding-right: 0;
+        padding: 15px 0;
+    }
+    .main__button
+    {
+        width: 50%;
+        margin: auto;
+    }
+    footer
+    {
+        margin-top: 20px!important;
+    }
+}
+
+@media (max-width: 576px)
+{
+    .main__text
+    {
+        font-size: 28px;
+    }
+    .main__button
+    {
+        width: 100%;
+    }
+    main > .container-fluid{
+        padding: 0 2%!important;
+    }
+}

@@ -1,0 +1,28 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags  %}
+
+{% block title %}Activate Account{% endblock %}
+
+{% block formname %}Activate Account{% endblock %}
+
+{% block form %}
+<div class="card">
+    <div class="cars-body">
+        <h4 class="card-title">
+            <form method="POST" action="{% url 'phone_verification' %}">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <input type='hidden' name='user' value='{{user.id}}' />
+
+                {% if error %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endif %}
+                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            </form>
+        </h4>
+    </div>
+</div>
+<a href="{% url 'sign-up' %}">Sign Up</a>
+{% endblock %}

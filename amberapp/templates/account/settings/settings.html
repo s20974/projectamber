@@ -1,0 +1,12 @@
+{% extends 'account/settings/base.html' %}
+
+{% block title %} Cahange Password {% endblock %}
+
+{% block page %} 
+    Settings
+
+    Settings <br>
+    <a href="{% url 'change-passwd' %}">Change password</a>
+    <br>
+    <a href="{% url 'update-profile' %}">Change profile</a>
+{% endblock %}

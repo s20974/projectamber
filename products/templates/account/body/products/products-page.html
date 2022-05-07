@@ -1,0 +1,158 @@
+{% extends 'account/body/base.html' %}
+{% load static %}
+{% load crispy_forms_tags  %}
+
+{% block title %} User's products {% endblock %}
+
+{% block page__header %} Products {% endblock %}
+
+{% block search-form %}
+<form method="POST" class="col-lg-2 col-md-3 search-bar">
+    {% csrf_token %}
+    <input type="text" class="search-bar__item" placeholder="Search">
+    <svg class="bi bi-search search__icon" width="1em" height="1em" viewBox="0 0 16 16" fill="#5A5AAD" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" clip-rule="evenodd"/>
+        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" clip-rule="evenodd"/>
+    </svg>
+</form>
+{% endblock %}
+
+{% block page %}
+<style>
+@media (max-width:992px) { 
+.categories{
+    order: 1;
+    margin-bottom: 20px;
+}
+.card-group{
+    order: 2;
+}
+}
+
+</style>
+<div class="row">
+    <div class="card-group col-lg-10 row">
+        {% for product in products %}
+        <div class="col-md-4">
+        <div class="card">
+            <img src="{{ MEDIA_URL }}{{ product.image }}" class="card-img-top" alt="Product Image">
+            <div class="card-body">
+            <h5 class="card-title">{{ product.name }}
+                {% for item in joint %}
+                    {% if item.id == product.id %}
+                        <span class="badge badge-warning">СП</span>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: {{ item.joint|length }}%" aria-valuenow="{{ item.joined|length }}" aria-valuemin="0" aria-valuemax="{{ item.partners }}">{{ item.joined.all|length }} / {{ item.partners }}</div>
+                    </div>
+                {% endif %}
+                {% endfor %}
+            </h5>
+            <p class="card-text">{{ product.short_description }}</p>
+            <p class="card-subtitle mb-2 text-muted">{{ product.price }}</p>
+            <a href="{% url 'product-info' product.id %}" class="btn btn-primary">More Info</a>
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="categories col-lg-2 row">
+        <div class="col-md-12">
+            <h2>Категории</h2>
+            {% for mainCategory in mainCategories %}
+            <h3>{{ mainCategory.name }}</h3>
+            {% for subCategory in subCategories %}
+            {% if subCategory.parent == mainCategory %}
+            {% csrf_token %}
+            <a href = "#" class="subCategory">{{subCategory.name}}</a>
+            <br>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+<script>
+    $(".search-bar").submit(function (e) {
+        // preventing from page reload and default actions
+        e.preventDefault();
+        // serialize the data for sending the form data.
+        var serializedData = $(this).serialize();
+        // search query
+        var query = $(".search-bar__item").val();
+        $(".card-group").empty();
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'search-for-product' %}",
+            data: {csrfmiddlewaretoken : serializedData.replace("csrfmiddlewaretoken=", ""), query : query},
+            success: function (response) {
+            $.each(response["instance"], function(k, v) {
+                  cg = $(".card-group");
+                  var img = v.image === undefined ? '' : v.image;
+                  var desc = v.short_description === undefined ? '' : v.short_description;
+                  var response = ' <div class="col-md-4"><div class="card"><img src="' + ({{ MEDIA_URL }} +  img) + '" class="card-img-top" alt="Product Image"><div class="card-body"><h5 class="card-title">' + v.name + '</h5><p class="card-text">' + desc + '</p><p class="card-subtitle mb-2 text-muted">' + v.price + '</p><a href="/account/product/' + v.id + '" class="btn btn-primary">More Info</a></div></div>        </div>'
+              cg.append(response);   
+                });
+             if (response['instance'].length == 0)
+             {
+                 $(".card-group").append('<div class="alert alert-warning alert-dismissible fade show col-md-12" role="alert"><strong>Ничего не найдено!</strong>Измените ваш поисковой запрос или добавьте новый товар!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+             }
+            },
+            error: function (response) {
+                // alert the error if any error occured
+                alert(response["error"]);
+            }
+        })
+    })
+    
+    $(".subCategory").click(function (e) {
+    var data = $(this).text();
+    var serializedData = $('.search-bar').serialize();
+    $(".card-group").empty();
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'get-by-category' %}",
+        data:{csrfmiddlewaretoken : serializedData.replace("csrfmiddlewaretoken=", ""), data : data},
+        success: function (response) {
+        $.each(response["products"], function(k, v) {
+              cg = $(".card-group");
+              var img = v.image === undefined ? '' : v.image;
+              var desc = v.short_description === undefined ? '' : v.short_description;
+              var response = ' <div class="col-md-4"><div class="card"><img src="' + ({{ MEDIA_URL }} +  img) + '" class="card-img-top" alt="Product Image"><div class="card-body"><h5 class="card-title">' + v.name + '</h5><p class="card-text">' + desc + '</p><p class="card-subtitle mb-2 text-muted">' + v.price + '</p><a href="/account/product/' + v.id + '" class="btn btn-primary">More Info</a></div></div>        </div>'
+          cg.append(response);   
+            });
+         if (response['products'].length == 0)
+         {
+             $(".card-group").append('<div class="alert alert-warning alert-dismissible fade show col-md-12" role="alert"><strong>Ничего не найдено!</strong>Нет товара в данной категории.<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>')
+         }
+        },
+        error: function (response) {
+            // alert the error if any error occured
+            alert(response["error"]);
+        }
+    })
+})
+</script>
+
+<script>
+
+    /*
+
+        PROGRESS BAR FILLING SCRIPT
+
+    */
+
+    var i = {{ joint|length }};
+
+    {% for item in joint %}
+        i--;
+        pBar = document.getElementsByClassName('progress-bar')[i];
+        pBar.style.width = {{ item.joined.all|length }} / {{ item.partners }} * 100 + '%';
+    {% endfor %}
+
+
+
+</script>
+
+
+{% endblock %}

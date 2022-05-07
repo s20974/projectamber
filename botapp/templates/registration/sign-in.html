@@ -1,0 +1,32 @@
+{% extends 'registration/base.html' %}
+{% load crispy_forms_tags  %}
+
+{% block title %}Sign-In{% endblock %}
+
+{% block formname %}Sign-In{% endblock %}
+
+{% block form %}
+<div class="card">
+    <div class="cars-body">
+        <h4 class="card-title">
+            <h4 class="card-title">Sign in your account</h4>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                {% if errors %}
+                    {% for error in errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+        </h4>
+    </div>
+</div>
+<a href="{% url 'sign-up' %}">Sign Up</a>
+<a href="{% url 'password_reset' %}">Forgot password ?</a>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'account/body/base.html' %}
+{% load static %}
+{% load crispy_forms_tags  %}
+
+{% block title %} New Task: Write message {% endblock %}
+
+{% block page__header %} Create new task {% endblock %}
+
+{% block page %}
+    <section class="task">
+        {% block task_form %}
+            <form method="POST" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ task_form | crispy }}
+                <button type="submit" class="btn btn-primary btn-block">Apply</button>
+            </form>
+        {% endblock %}
+        </div> 
+    </section>
+{% endblock %}

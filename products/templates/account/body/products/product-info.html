@@ -1,0 +1,41 @@
+{% extends 'account/body/base.html' %}
+{% load static %}
+{% load crispy_forms_tags  %}
+{% load mathfilters %}
+
+{% block title %} Product Info {% endblock %}
+
+{% block page__header %} Product Info {% endblock %}
+
+{% block page %}
+    <img src="{{ MEDIA_URL }}{{ product.image }}" width="500" height="500" alt="Product Image">
+    <div class="card-body">
+        <h5 class="card-title">{{ product.name }}{% if jp %}<span class="badge badge-warning">СП</span>{% endif %}</h5>
+        <p class="card-text">{{ product.short_description }}</p>
+        <p class="card-subtitle mb-2 text-muted">{{ product.price }}</p>
+        {% if jp %}
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped bg-info" role="progressbar" aria-valuenow="{{ jp.joined.all|length }}" aria-valuemin="0" aria-valuemax="{{ jp.partners }}">{{ jp.joined.all|length }} / {{ jp.partners }}</div>
+        </div>
+        {% endif %}
+        <p class="card-text">Выложил: {{ product.user }} {% if not request.user == product.user %}<a href="{% url 'chatapp:create_chat' user_id=product.user.id %}"><span class="badge badge-secondary">Написать</span></a>{% endif %}</p>
+        <a href="/order/new/{{ product.user.id }}/{{ product.id }}"><button class="btn btn-success">Добавить заказ</button></a>
+        {% if jp %}
+            {% if not request.user in jp.joined.all and jp.joined.all|length != jp.partners %}
+                <a href="/account/products/{{ product.id }}/join"><button class="btn btn-success">Стать участником СП</button></a>
+            {% elif request.user in jp.joined.all %}
+                <a href="/account/products/{{ product.id }}/leave"><button class="btn btn-danger">Не участвовать в СП</button></a>
+            {% else %}
+
+            {% endif %}
+        {% endif %}
+    </div>
+    {% if jp %}
+    <script>
+
+        pBar = document.getElementsByClassName('progress-bar')[0];
+        pBar.style.width = {{ jp.joined.all|length }} / {{ jp.partners }} * 100 + '%';
+
+    </script>
+    {% endif %}
+{% endblock %}

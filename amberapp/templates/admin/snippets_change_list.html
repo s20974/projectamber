@@ -1,0 +1,18 @@
+{% extends 'admin/change_list.html'  %}
+{% block  object-tools %}
+    <form id="fontsize-form" method="POST">
+        {% csrf_token %}
+        <input name="fontsize" class="vTextField">
+        <button class="button" type="submit">Change Fint Size</button>
+    </form>
+    <br>
+    <script>
+        let fontsizeForm = document.querySelector('#fontsize-form');
+        fontsizeForm.querySelector('input[name="fontsize"]').addEventListener('change', function(e){
+            let fontSize = e.target.value;
+            fontsizeForm.action = 'fontsize/'+fontSize+'/'
+        });
+    </script>
+
+    {{ block.super }}
+{% endblock %}

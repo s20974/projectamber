@@ -1,0 +1,38 @@
+{% extends 'account/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %} Действия {% endblock %}
+
+{% block page__header %} Действия {% endblock %}
+
+{% block page %} 
+    <section class="accounts">
+        <div class="row tasks__row">
+            {% for action in actions %}
+            <div class="col-sm-6 col-xs-12 tasks__item accounts__item">
+                <div class="row accounts__row">
+                    <div class="col-md-2 accounts__img">
+                        {{ action.bootstrap_icon|safe }}
+                    </div>
+                    <div class="col-md-7 col-lg-8 col-xl-9">
+                        <p class="tasks__title">{{ action.title }}</p>
+                        <p class="tasks__description">{{ action.description }}</p>
+                        <div class="configuration" style="display: none;">
+                            <p class="title">Configure your telegram tokens</p>
+                            <input type="text" class="search-bar__item" placeholder="Search">
+                            <input type="text" class="search-bar__item" placeholder="Search">
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-2 col-xl-1 accounts__buttons">
+                        <button onclick="//showHidden('.configuration');" class="btn tasks__btn float-right accounts__more-button"></button>
+                        <a href="{{ action.link }}"<button class="btn tasks__btn float-right accounts__apply-button">✔</button></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/account/accounts-page.js' %}"></script>
+{% endblock %}

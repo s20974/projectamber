@@ -1,0 +1,268 @@
+.content
+{
+    font-family: 'Manrope', sans-serif;
+    padding: 40px 50px 0 50px;
+    background-color: #EBEBFA;
+}
+
+.page-header__item
+{
+    font-size: 32px;
+    padding-bottom: 40px;
+}
+
+.search-bar__item
+{
+    padding: 12px 24px;
+    width: 100%;
+
+    background-color: white;
+    transition: transform 250ms ease-in-out;
+    font-size: 14px;
+    line-height: 18px;
+    
+    color: #A2A3B0;
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid white;
+}
+
+.search__icon
+{
+  position: absolute;
+  height: 24px;
+  width: 24px;
+  background: transparent;
+  right: 25px;
+  top: 10px;
+  border-radius: 100%;
+}
+
+/*
+
+Tasks section
+
+*/
+
+.tasks__row
+{
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.tasks__item
+{
+  font-size: 20px;
+}
+
+.wrapper
+{
+  padding: 0 10px 10px 5px;
+  background-color: #F5F5FF;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.tasks__title
+{
+  padding-top: 20px;
+  font-size: 24px;
+}
+
+
+.tasks__icon
+{
+  padding-top: 10px;
+  padding-left: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+.tasks__btn
+{
+  background-color: white;
+  border: none;
+  color: #5A5AAD;
+  font-size: 20px;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.tasks__btn:hover
+{
+  color: white;
+  background-color: #5A5AAD;
+}
+
+
+@media (max-width: 1100px) {
+
+  .search__icon
+  {
+    right: 15px;
+  }
+}
+
+
+@media (max-width:  574px)
+{
+
+  .tasks__item
+  {
+    max-width: 100%;
+  }
+} 
+
+
+/* 
+
+Create new task section
+
+*/
+
+
+
+.textinput, .select, .textarea
+{
+    width: 100%;
+
+    background-color: white;
+    transition: transform 250ms ease-in-out;
+    
+    color: #A2A3B0;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid white;
+}
+
+
+.btn
+{
+  background-color: white;
+  border: none;
+  color: #5A5AAD;
+  font-size: 20px;
+  padding: 15px;
+  border-radius: 10px;
+  transition: 0.45s;
+}
+
+.btn:hover
+{
+  color: white;
+  background-color: #5A5AAD;
+}
+
+
+/* 
+
+Accounts section
+
+*/
+
+.accounts__buttons
+{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  padding: 5px;
+  margin-top: auto;
+}
+
+.accounts__more-button
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 28px;
+  padding: 0;
+  padding: 36px 0;
+  margin-bottom: 5px;
+  margin-top: auto;
+}
+
+
+.accounts__row
+{
+  height: 100%;
+}
+
+.accounts__more-button:after {
+  content: '\2807';
+  font-size: 20px;
+  padding-left: 5px;
+}
+
+
+.accounts__item
+{
+  padding:0;
+}
+
+.accounts__item > .row
+{
+  margin: 0;
+}
+
+
+.more-button__item
+{
+  height: 24px;
+}
+
+
+@media (min-width: 1200px) and (max-width: 1440px)
+{
+
+  .accounts__buttons
+  {
+    padding: 0;
+  }
+}
+
+
+@media (max-width: 1024px)
+{
+  .accounts__img
+  {
+    padding: 0;
+  }
+}
+
+
+@media (max-width: 767px)
+{
+
+  .accounts__buttons
+  {
+    flex-direction: row;
+    padding: 10px;
+    height: 120px;
+    margin-bottom: auto;
+  }
+
+  .accounts__more-button, .accounts__apply-button
+  {
+    width: 100%;
+    height: 100px;
+  }
+
+  .accounts__more-button
+  {
+    margin: 0;
+    margin-right: 5px;
+  }
+
+  .accounts__apply-button
+  {
+    margin-left: 5px;
+  }
+
+  .search-bar
+  {
+    padding-bottom: 15px;
+  }
+}

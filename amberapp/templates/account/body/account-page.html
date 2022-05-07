@@ -1,0 +1,130 @@
+{% extends 'account/body/base.html' %}
+{% load static %}
+
+{% block title %} Tasks {% endblock %}
+
+{% block page_header %} Create new task {% endblock %}
+
+{% block page %} 
+    {% if messages %}
+    <div class="alert alert-primary" role="alert">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <section class="tasks">
+        <div class="row tasks__row">
+            <div class="col-md-12 col-xl-6 col-sm-6 col-12 tasks__item">
+                <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-2">
+                          <svg class="bi bi-cursor-fill tasks__icon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 01.103.557L8.528 15.467a.5.5 0 01-.917-.007L5.57 10.694.803 8.652a.5.5 0 01-.006-.916l12.728-5.657a.5.5 0 01.556.103z" clip-rule="evenodd"/>
+                          </svg>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="tasks__title">Запустить бота</p>
+                        <p class="tasks__description"></p>
+                        <a href="/account/task/run"><button class="btn tasks__btn float-right">
+                            <svg class="bi bi-arrow-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z" clip-rule="evenodd"/>
+                              </svg>
+                            Перейти</button>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-xl-6 col-sm-6 col-12 tasks__item">
+                <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-2">
+                          <svg class="bi bi-cursor-fill tasks__icon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 01.103.557L8.528 15.467a.5.5 0 01-.917-.007L5.57 10.694.803 8.652a.5.5 0 01-.006-.916l12.728-5.657a.5.5 0 01.556.103z" clip-rule="evenodd"/>
+                          </svg>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="tasks__title">Добавить токен телеграм</p>
+                        <p class="tasks__description"></p>
+                        <a href="/account/telegram/add"><button class="btn tasks__btn float-right">
+                            <svg class="bi bi-arrow-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z" clip-rule="evenodd"/>
+                              </svg>
+                            Добавить</button>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-xl-6 col-sm-6 col-12 tasks__item">
+                <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-2">
+                          <svg class="bi bi-cursor-fill tasks__icon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 01.103.557L8.528 15.467a.5.5 0 01-.917-.007L5.57 10.694.803 8.652a.5.5 0 01-.006-.916l12.728-5.657a.5.5 0 01.556.103z" clip-rule="evenodd"/>
+                          </svg>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="tasks__title">Добавить токен вайбер</p>
+                        <p class="tasks__description"></p>
+                        <a href="/account/viber/add"><button class="btn tasks__btn float-right">
+                            <svg class="bi bi-arrow-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z" clip-rule="evenodd"/>
+                              </svg>
+                            Добавить</button>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-xl-6 col-sm-6 col-12 tasks__item">
+                <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-2">
+                          <svg class="bi bi-cursor-fill tasks__icon" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M14.082 2.182a.5.5 0 01.103.557L8.528 15.467a.5.5 0 01-.917-.007L5.57 10.694.803 8.652a.5.5 0 01-.006-.916l12.728-5.657a.5.5 0 01.556.103z" clip-rule="evenodd"/>
+                          </svg>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="tasks__title">Добавить группу</p>
+                        <p class="tasks__description">Объединить аккаунты в одну группу</p>
+                        <a href="{% url 'add-group' %}"><button class="btn tasks__btn float-right">
+                            <svg class="bi bi-arrow-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z" clip-rule="evenodd"/>
+                              </svg>
+                            Добавить группу</button>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% for task in tasks %}
+            <div class="col-md-12 col-xl-6 col-sm-6 col-12 tasks__item">
+                <div class="wrapper">
+                <div class="row">
+                    <div class="col-md-2">
+                          {{ task.bootstrap_icon|safe }}
+                    </div>
+                    <div class="col-md-10">
+                        <p class="tasks__title">{{ task.title }}</p>
+                        <p class="tasks__description">{{ task.description }}</p>
+                        <a href="{{ task.link }}"><button class="btn tasks__btn float-right">
+                            <svg class="bi bi-arrow-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10.146 4.646a.5.5 0 01.708 0l3 3a.5.5 0 010 .708l-3 3a.5.5 0 01-.708-.708L12.793 8l-2.647-2.646a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                                <path fill-rule="evenodd" d="M2 8a.5.5 0 01.5-.5H13a.5.5 0 010 1H2.5A.5.5 0 012 8z" clip-rule="evenodd"/>
+                              </svg>
+                            Send</button>
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
